@@ -116,16 +116,13 @@ window.findNQueensSolution = function(n) {
   var solution = new Board({'n':n});
    var solutionCount = 0; 
   var numPieces = 0;
-  if(n === 0){
-    return solution.rows();
-  }
+  
 
   var checkRooks = function(rooks){
     //if there is no rooks then add to solution
     if(solutionCount > 0) {
       return;
     } 
-
     if(rooks === 0){
       solutionCount++;
       return;
@@ -145,6 +142,9 @@ window.findNQueensSolution = function(n) {
           //if we are keeping toggle there then we rooks -1
           rooks--;
           checkRooks(rooks);
+          if(solutionCount > 0) {
+      return;
+    } 
           solution.togglePiece(row,col);
           rooks++;
         }
